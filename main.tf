@@ -1,8 +1,22 @@
-provider "aws" {
-    region = "us-east-1"  # Set your desired AWS region
+variable "ami_value" {
+  description = "The AMI ID to use for the server"
+  
 }
+variable "instance_type" {
+  description = "The type of instance to launch"
 
-resource "aws_instance" "vishwas" {
-    ami           = "ami-0e2c8caa4b6378d8c"  # Specify an appropriate AMI ID
-    instance_type = "t2.micro"
-}
+  }
+  variable "subnet_id" {
+    description = "The subnet ID to launch the instance into"
+    
+  }
+  provider "aws" {
+    region = "us-west-2"
+    
+  }
+  resource "instance" "vishwas" {
+    ami = var.ami_value
+    instance_type = var.instance_type
+    subnet_id = var.subnet_id
+    
+  }
